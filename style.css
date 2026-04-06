@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+body {
+    background-color: #000;
+    font-family: sans-serif;
+    color: white;
+}
+
+#rotate-device {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #1a001a;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    color: #ff77ff; z-index: 9999; text-align: center;
+}
+
+#main-content {
+    display: none;
+    position: relative;
+    width: 100vw; height: 100vh;
+}
+
+@media (orientation: landscape) {
+    #rotate-device { display: none; }
+    #main-content { display: block; }
+}
+
+#matrix {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1; opacity: 0; transition: opacity 2s;
+}
+
+#stars-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0; background-color: black;
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px);
+    background-size: 300px 300px;
+    opacity: 0; transition: opacity 3s;
+}
+
+#start-screen {
+    position: absolute;
+    width: 100%; height: 100%;
+    background: black; z-index: 100;
+    display: flex; justify-content: center; align-items: center;
+}
+
+#start-btn {
+    padding: 20px 40px; font-size: 24px;
+    background: transparent; color: #ff00ff;
+    border: 2px solid #ff00ff; border-radius: 50px;
+    cursor: pointer;
+}
+
+.plain-text {
+    font-size: 6rem; font-weight: bold;
+    color: #ff77ff; display: none; text-align: center;
+}
+
+#overlay {
+    position: absolute;
+    width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    pointer-events: none; z-index: 5;
+}
+
+#heart {
+    font-size: 12rem; color: #ff0066;
+    display: none; animation: pulse 1s infinite;
+}
+
+@keyframes pulse { 
+    0%, 100% { transform: scale(1); } 
+    50% { transform: scale(1.1); } 
+}
+
+/* --- ОТКРЫТКА --- */
+#card-container {
+    position: absolute;
+    width: 100%; height: 100%;
+    z-index: 20; display: none;
+    justify-content: center; align-items: center;
+}
+
+.book-layout {
+    display: flex;
+    width: 700px; 
+    height: 450px;
+    perspective: 2000px;
+    position: relative;
+}
+
+/* Левая и правая части фона (подложки) */
+.base-side {
+    width: 350px;
+    height: 450px;
+    background: #fffafa;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#l-bg { border-radius: 10px 0 0 10px; background: transparent; border: none; }
+#r-bg { border-radius: 0 10px 10px 0; cursor: pointer; }
+
+/* Переворачивающийся лист */
+.flipping-leaf {
+    position: absolute;
+    top: 0; right: 0;
+    width: 350px; height: 100%;
+    transform-origin: left;
+    transform-style: preserve-3d;
+    transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    z-index: 10;
+}
+
+.leaf-side {
+    position: absolute;
+    width: 100%; height: 100%;
+    backface-visibility: hidden;
+    display: flex; justify-content: center; align-items: center;
+    background: #fffafa; border: 1px solid #ddd;
+}
+
+.leaf-back {
+    transform: rotateY(180deg);
+    background: #fff0ff;
+}
+
+img {
+    width: 90%; height: 92%;
+    object-fit: cover; border: 8px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.flipped {
+    transform: rotateY(-180deg);
+}
+
+#heart-gallery {
+    position: absolute;
+    width: 100%; height: 100%;
+    z-index: 30; pointer-events: none;
+}
+
+.photo-item {
+    position: absolute;
+    width: 120px; height: 150px;
+    padding: 5px; background: white;
+    opacity: 0; transition: all 1.5s ease-out;
+}
+
+.wish-container {
+    position: fixed; /* Чтобы текст всегда был сверху по центру экрана */
+    top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border: 3px solid #ff00ff;
+    border-radius: 15px;
+    background: rgba(26, 0, 26, 0.8);
+    box-shadow: 0 0 15px #ff00ff;
+    z-index: 1000;
+    opacity: 0; /* Изначально прозрачный */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none; /* Чтобы рамка не мешала кликать по книге */
+}
+
+/* Скрываем рамку полностью, если внутри нет текста */
+.wish-container:empty,
+#wish-text:empty {
+    display: none;
+}
+
+#wish-text {
+    color: #ffccff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 0 5px #ff00ff;
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For Angelina</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="rotate-device">
+        <div class="phone-icon"></div>
+        <p>Пожалуйста, переверните устройство горизонтально</p>
+    </div>
+
+    <div id="main-content">
+        
+        <div id="stars-bg"></div>
+
+        <canvas id="matrix"></canvas>
+        
+        <div id="start-screen">
+            <button id="start-btn">Нажми, чтобы начать</button>
+        </div>
+
+        <div id="overlay">
+            <div id="countdown" class="plain-text"></div>
+            <div id="text-sequence" class="plain-text"></div>
+            <div id="heart">❤</div>
+        </div>
+
+        <div id="wish-box" class="wish-container">
+            <div id="wish-text"></div>
+        </div>
+
+        <div id="card-container">
+            <div class="book" id="book">
+                
+                <div class="left-base">
+                    <div class="base-filler"></div>
+                </div>
+
+                <div class="page" id="page4" style="z-index: 1;">
+                    <div class="front"><img src="otk/7.jpg" alt="Фото 7"></div>
+                    <div class="back"><img src="otk/8.jpg" alt="Фото 8"></div>
+                </div>
+
+                <div class="page" id="page3" style="z-index: 2;">
+                    <div class="front"><img src="otk/5.jpg" alt="Фото 5"></div>
+                    <div class="back"><img src="otk/6.jpg" alt="Фото 6"></div>
+                </div>
+
+                <div class="page" id="page2" style="z-index: 3;">
+                    <div class="front"><img src="otk/3.jpg" alt="Фото 3"></div>
+                    <div class="back"><img src="otk/4.jpg" alt="Фото 4"></div>
+                </div>
+
+                <div class="page" id="page1" style="z-index: 4;">
+                    <div class="front">
+                        <img src="cover.jpg" alt="Обложка">
+                    </div>
+                    <div class="back">
+                        <img src="otk/1.jpg" alt="Фото 1">
+                    </div>
+                </div>
+                
+                <div class="right-base">
+                    <img src="otk/2.jpg" alt="Фото 2">
+                </div>
+
+            </div>
+        </div>
+
+        <div id="heart-gallery"></div>
+
+    </div>
+
+    <audio id="bg-music" src="music.mp3" loop></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
